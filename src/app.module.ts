@@ -4,10 +4,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { CourseModule } from './course/course.module';
 import { EnrollmentModule } from './enrollment/enrollment.module';
-import { CollaboratorModule } from './collaborator/collaborator.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: './env',
+      isGlobal: true
+    
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -21,7 +26,6 @@ import { CollaboratorModule } from './collaborator/collaborator.module';
 }),
     CourseModule,
     EnrollmentModule,
-    CollaboratorModule
   ],
   controllers: [AppController],
   providers: [AppService],
