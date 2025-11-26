@@ -33,15 +33,16 @@ async update(id: number, courseBody: CourseDTO){
 }
 
 async delete(id:number){
-    const gettingID = await this.courseRepository.findOne({where: {id}})
+   const gettingID = await this.courseRepository.findOne({where: {id}})
     if(!gettingID){
         throw new NotFoundException("Curso não encontrado")
     }
 
-    await this.courseRepository.delete(id)
+    await this.courseRepository.update(id, {active: false})
+
 
     return {
-        message: "Curso deletado!"
+        message: "Curso desativado!"
     }
 }
 }

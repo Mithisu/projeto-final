@@ -1,3 +1,5 @@
+import { Course } from './src/course/course.entity';
+import { Enrollments } from './src/enrollment/enrollment.entity';
 import { DataSource } from 'typeorm';
 
 
@@ -7,7 +9,7 @@ export default new DataSource({ // criando as imigrações
   port: 3306,
   username: 'root',
   password: '',
-  database: 'MariSchool',
-  entities: [],
+  database: 'MariSchoo',
+  entities: [Course, Enrollments],
   migrations: ['dist/migrations/*.js'],
 });

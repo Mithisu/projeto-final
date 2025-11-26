@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { CourseModule } from './course/course.module';
 import { EnrollmentModule } from './enrollment/enrollment.module';
 import { ConfigModule } from '@nestjs/config';
+import { Course } from './course/course.entity';
+import { Enrollments } from './enrollment/enrollment.entity';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { ConfigModule } from '@nestjs/config';
       port: 3306,
       username: 'root',
       password: '',
-      database: 'MariSchool',
+      database: 'MariSchoo',
       autoLoadEntities: true,
       synchronize: false,  // importante! false em produção
       logging: true,  
