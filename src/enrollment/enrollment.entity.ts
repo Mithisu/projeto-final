@@ -10,12 +10,21 @@ export class Enrollments {
     studentName: string;
 
     @Column()
-    studentCpf: number;
+    studentEmail: string;
+
+    @Column()
+    studentPhone: string;
+
+    @Column()
+    birthDate: string;
+
+    @Column()
+    studentCpf: string;
 
     @Column()
     courseId: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({name: "createAt"})
     createAt: Date;
 
 }

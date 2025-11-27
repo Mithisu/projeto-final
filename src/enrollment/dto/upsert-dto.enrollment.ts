@@ -1,29 +1,33 @@
 import { IsDate, IsNotEmpty, IsNumber, IsPhoneNumber, IsString } from "class-validator"
 
 
-export class Enrollments {
+export class EnrollmentsDTO {
   @IsNotEmpty()
   @IsString()   
-  studentName: String;
+  studentName: string;
 
   @IsNotEmpty()
   @IsString()
-  studentEmail: String;
+  studentEmail: string;
 
   @IsNotEmpty()
   @IsNumber()
-  studentCpf: Number;
+  studentCpf: string;
 
   @IsNotEmpty()
   @IsPhoneNumber('BR')
-  studentPhone: Number;
+  studentPhone: string;
 
   @IsNotEmpty()
   @IsDate()
-  birthDate: Number;
+  birthDate: string;
 
   @IsNotEmpty()
   @IsNumber()
-  courseId: Number;
+  courseId: number;
+
+  @IsNumber()
+  @IsDate()
+  createAt: Date
 
 }
