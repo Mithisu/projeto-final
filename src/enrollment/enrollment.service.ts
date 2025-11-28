@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Enrollments } from './enrollment.entity';
 import { Repository } from 'typeorm';
@@ -25,6 +25,19 @@ async create(enrollments: EnrollmentsDTO){
     }
 
 }
+
+async delete(id: number){
+    const gettingID = await this.enrollmentsRepository.findOne({where: {id}})
+    if(!gettingID){
+        throw new NotFoundException("Matrícula não encontrada")
+    }
+    await this.enrollmentsRepository.delete(gettingID)
+
+    return {
+        message: "Matrícula excluída com sucesso!"
+    }
+}
+    
 
 
 

@@ -44,4 +44,6 @@ async delete(id:number){
         message: "Curso deletado!"
     }
 }
+
+
 }

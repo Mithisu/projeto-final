@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Enrollments } from './enrollment.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -10,15 +10,20 @@ import { Public } from 'src/auth/auth.guard';
 export class EnrollmentController {
     constructor(private enrollments: EnrollmentService ) {}
 
+    @Public()
     @Get()
     getall(){
         return this.enrollments.getAll()
     }
 
 
-    @Public()
     @Post()
     create(@Body() enrollmentsBody: EnrollmentsDTO){
         return this.enrollments.create(enrollmentsBody)
+    }
+
+    @Delete(':id')
+    delete(@Param('id') id: number){
+        return this.enrollments.delete(id)
     }
 }

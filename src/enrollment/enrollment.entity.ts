@@ -1,30 +1,33 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Course } from "../course/course.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 
-
-@Entity() 
+@Entity()
 export class Enrollments {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    studentName: string;
+  @Column()
+  studentName: string;
 
-    @Column()
-    studentEmail: string;
+  @Column()
+  studentEmail: string;
 
-    @Column()
-    studentPhone: string;
+  @Column()
+  studentPhone: string;
 
-    @Column()
-    birthDate: string;
+  @Column()
+  birthDate: string;
 
-    @Column()
-    studentCpf: string;
+  @Column()
+  studentCpf: string;
 
-    @Column()
-    courseId: number;
+  @Column()
+  courseId: number;
 
-    @CreateDateColumn({name: "createAt"})
-    createAt: Date;
+  @ManyToOne(() => Course, course => course.enrollments, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "courseId" })
+  course: Course;
 
+  @CreateDateColumn({ name: "createAt" })
+  createAt: Date;
 }
