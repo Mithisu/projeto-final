@@ -3,16 +3,30 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Course } from './course.entity';
 import { Repository } from 'typeorm';
 import { CourseDTO } from './dto/upsert-dto.collaborator';
+import { Enrollments } from 'src/enrollment/enrollment.entity';
 
 @Injectable()
 export class CourseService {
 
     constructor(@InjectRepository(Course)
-    private courseRepository: Repository<Course>
+    private courseRepository: Repository<Course>,
+    @InjectRepository(Enrollments)
+    private readonly enrollmentRepo: Repository<Enrollments>
 ) {}
 
 getAll(){
     return this.courseRepository.find()
+}
+
+async getEnrollments(id: number){
+   const gettingID = await this.courseRepository.findOne({where: {id}})
+   if(!gettingID){
+    throw new NotFoundException("Curso não encontrado")
+   }
+
+   return this.enrollmentRepo.find({
+    where: {course: {id}}
+   })
 }
 
 async create(courseBody: CourseDTO){
@@ -29,7 +43,7 @@ async update(id: number, courseBody: CourseDTO){
         throw new NotFoundException("Curso não encontrado")
     }
 
-    await this.courseRepository.update(id, courseBody)
+    return await this.courseRepository.update(id, courseBody)
 }
 
 async delete(id:number){
@@ -45,4 +59,6 @@ async delete(id:number){
         message: "Curso desativado!"
     }
 }
+
+
 }

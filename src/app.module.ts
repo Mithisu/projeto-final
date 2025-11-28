@@ -5,29 +5,28 @@ import { AppService } from './app.service';
 import { CourseModule } from './course/course.module';
 import { EnrollmentModule } from './enrollment/enrollment.module';
 import { ConfigModule } from '@nestjs/config';
-import { Course } from './course/course.entity';
-import { Enrollments } from './enrollment/enrollment.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: './env',
+      envFilePath: '.env',
       isGlobal: true
     
     }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'MariSchoo',
-      autoLoadEntities: true,
-      synchronize: false,  // importante! false em produção
-      logging: true,  
+  type: 'mysql',
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  autoLoadEntities: true,
+  synchronize: true,
 }),
     CourseModule,
     EnrollmentModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
