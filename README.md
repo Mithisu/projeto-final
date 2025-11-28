@@ -12,13 +12,11 @@ TypeScript
 
 TypeORM
 
-PostgreSQL (ou MySQL, dependendo do seu setup)
+MySQL
 
 JWT (Passport / AuthGuard)
 
 Class-validator
-
-bcrypt
 
 📦 Requisitos
 
@@ -28,9 +26,9 @@ Node.js 18+
 
 NPM ou Yarn
 
-Banco PostgreSQL (ou outro configurado no app.module.ts)
+Banco MYSQL
 
-Nest CLI (opcional, mas recomendável)
+Nest CLI
 
 Instalar Nest CLI:
 
@@ -40,8 +38,8 @@ npm i -g @nestjs/cli
 
 Clone o repositório:
 
-git clone https://github.com/seuusuario/marischool-api.git
-cd marischool-api
+git clone https://github.com/WebersonRodrigues7/Projeto-Matriculas.git
+cd projetoMatricula
 
 
 Instale as dependências:
@@ -50,13 +48,13 @@ npm install
 
 ⚙️ Configuração do Banco de Dados
 
-Edite o arquivo .env (se estiver usando) ou diretamente no app.module.ts:
+Edite o arquivo .env ou diretamente no app.module.ts:
 
 Exemplo:
 
 DB_HOST=localhost
 DB_PORT=5432
-DB_USER=postgres
+DB_USER=root
 DB_PASS=senha
 DB_NAME=marischool
 JWT_SECRET=supersecretkey
